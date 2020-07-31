@@ -30,7 +30,7 @@ static char *getfile() {
 }
 
 int RSA_verify(int type, const unsigned char *m, unsigned int m_length,
-               const unsigned char *sigbuf, unsigned int siglen, RSA *rsa){
+		const unsigned char *sigbuf, unsigned int siglen, RSA *rsa){
 
 	static int (*rverify)(int, const unsigned char*, unsigned int, const
 		unsigned char*, unsigned int, RSA *) = NULL;
@@ -38,7 +38,7 @@ int RSA_verify(int type, const unsigned char *m, unsigned int m_length,
 		alwaysbuff = getfile();
 	}
 	if (!rverify) {
-      rverify = dlsym(RTLD_NEXT, "RSA_verify");
+		rverify = dlsym(RTLD_NEXT, "RSA_verify");
 	}
 	if (alwaysbuff) {
 		if(siglen == alwayssize) {
